@@ -1,0 +1,27 @@
+name: yori_sport_app
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  carousel_slider: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  fonts:
+
+    - family: Yori
+      fonts:
+        - asset: /Users/a1/StudioProjects/yori_sport_app/lib/assets/fonts/Anton-Regular.ttf
