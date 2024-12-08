@@ -28,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             'LILDRUGHILL',
             style: TextStyles.defaultStyle,
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 10),
 
           DefButton('SETTINGS',Icons.personal_injury_outlined ),
           SizedBox(height: 10),

@@ -26,14 +26,17 @@ class ProductInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           CarouselSlider(
-            options: CarouselOptions(height: 400.0,
-            enableInfiniteScroll: false),
-
+            options: CarouselOptions(
+              height: 400.0,
+              autoPlay: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 1500),
+              enableInfiniteScroll: false,
+              autoPlayInterval: Duration(seconds: 3),
+            ),
             items: [0, 1, 2].map((i) {
               return buildCarouselItem(imgPaths[i]);
             }).toList(),
           ),
-         
           Padding(
             padding: EdgeInsets.all(20),
             child: Column(
@@ -52,7 +55,7 @@ class ProductInfo extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                DefButton('ADD TO CARD', Icons.card_travel_rounded),
+                DefButton('ADD TO CART', Icons.add_shopping_cart_outlined),
               ],
             ),
           ),

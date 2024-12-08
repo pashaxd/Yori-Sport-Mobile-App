@@ -122,18 +122,17 @@ class _ShopScreenState extends State<ShopScreen> {
                     style: TextStyles.defaultHeadStyle,
                   ),
                 ),
-                buildProductRow(
-                  ['/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/product_images/mix.png',
-                    '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/zip.png',
-                    '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/pants.png'],
-                  '2027 HOLIDAY BUNDLE',
-                  '250\$',
-                  ['/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/product_images/mix.png',
-                    '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/zip.png',
-                    '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/pants.png'],
-                  '2027 HOLIDAY BUNDLE',
-                  '250\$',
-                ),
+
+                   Center(
+                     child: ProductCard(
+                      ['/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/product_images/mix.png',
+                      '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/zip.png',
+                      '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/pants.png'],
+                      '2027 HOLIDAY BUNDLE',
+                      '250\$',
+                                       ),
+                   ),
+
               ],
             ),
           ),

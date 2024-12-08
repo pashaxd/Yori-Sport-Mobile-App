@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "97022070620",
+    "project_id": "yori-sport",
+    "storage_bucket": "yori-sport.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97022070620:android:b6b104de3a1ebdbb0dbb99",
+        "android_client_info": {
+          "package_name": "com.yori.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe-djfppWnbGmNRNE_lcWJ_9zvpfq97LQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
