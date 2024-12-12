@@ -13,6 +13,7 @@ class ProductInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void addingToCartFunc() {};
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -55,7 +56,7 @@ class ProductInfo extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                DefButton('ADD TO CART', Icons.add_shopping_cart_outlined),
+                DefButton('ADD TO CART', Icons.add_shopping_cart_outlined,  (context) => addingToCartFunc()),
               ],
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yori_sport_app/features/profile_screen.dart';
+import 'package:yori_sport_app/features/profile_screen/profile_screen.dart';
 import 'package:yori_sport_app/features/shop_screen.dart';
 
 import '../assets/test_styles.dart';
