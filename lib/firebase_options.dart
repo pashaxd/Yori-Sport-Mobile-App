@@ -72,4 +72,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'yori-sport.firebasestorage.app',
     iosBundleId: 'com.example.yoriSportApp',
   );
+
 }

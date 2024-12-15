@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:yori_sport_app/abstractions/shopping_cart_card.dart';
 import 'package:yori_sport_app/features/profile_screen/profile_screen.dart';
 import 'package:yori_sport_app/features/shop_screen.dart';
+import 'package:yori_sport_app/features/shopping_cart_screen.dart';
 
 import '../assets/test_styles.dart';
 
@@ -12,7 +14,10 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
-  static const List<Widget> _widgetOptions = <Widget>[ShopScreen(),ProfileScreen()];
+  static const List<Widget> _widgetOptions = <Widget>[
+    ShopScreen(),
+    ProfileScreen()
+  ];
 
   int _selectedIndex = 0;
 
@@ -27,13 +32,26 @@ class _BaseScreenState extends State<BaseScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          backgroundColor: Colors.grey,
-          title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset(
-              '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/logo.png',
-              height: 42,
-            ),
-          ])),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ShoppingCartScreen(
+                              initialItems: [],
+                            )));
+              },
+              icon: Icon(Icons.shopping_cart_outlined,
+              size: 26,),
+          ),
+        ],
+        backgroundColor: Colors.grey,
+        title: Image.asset(
+          '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/logo.png',
+          height: 42,
+        ),
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

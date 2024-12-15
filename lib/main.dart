@@ -1,21 +1,27 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yori_sport_app/auth/auth_gate.dart';
-import 'package:yori_sport_app/features/base.dart';
-import 'package:yori_sport_app/features/shop_screen.dart';
 
+
+import 'abstractions/cart_provider.dart';
 import 'firebase_options.dart';
 
 
 
 void main() async{
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
 
-  runApp( MyApp());
+  runApp( ChangeNotifierProvider(
+    create: (context) => CartProvider(),
+    child: MyApp(),
+  ),);
 }
 
 class MyApp extends StatelessWidget {

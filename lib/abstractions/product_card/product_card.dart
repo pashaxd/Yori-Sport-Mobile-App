@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:yori_sport_app/abstractions/product_card/product_info.dart';
 import 'package:yori_sport_app/assets/test_styles.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   final List<String> imgPaths;
   final String name;
   final String description;
+  final String productId;
 
-  ProductCard(this.imgPaths, this.name, this.description);
-
-  @override
-  State<ProductCard> createState() => _ProductCardState();
-}
-
-class _ProductCardState extends State<ProductCard> {
+  ProductCard(this.imgPaths, this.name, this.description, this.productId);
 
   @override
   Widget build(BuildContext context) {
@@ -23,34 +18,45 @@ class _ProductCardState extends State<ProductCard> {
           context,
           MaterialPageRoute(
               builder: (context) => ProductInfo(
-                  widget.imgPaths, widget.name, widget.description)),
+                  productId,
+                  imgPaths,
+                  name,
+                  description)),
         );
       },
-      child: Card(
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(
-              widget.imgPaths[0],
-              height: 240,
-              width: 200,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                widget.name,
-                style: TextStyles.defaultStyle,
+      child: Container(
+        height: 367,
+        width: 200,
+        child: Card(
+          color: Colors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                imgPaths.isNotEmpty ? imgPaths[0] : '',
+                height: 240,
+                width: 190,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Center(child: Text('Ошибка загрузки изображения'));
+                },
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                widget.description,
-                style: TextStyles.defaultStyle,
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  name,
+                  style: TextStyles.defaultStyle,
+                ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(
+                  description,
+                  style: TextStyles.defaultStyle,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
