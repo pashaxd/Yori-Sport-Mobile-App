@@ -4,12 +4,24 @@ class CartProvider with ChangeNotifier {
   final List<Map<String, dynamic>> _items = [];
   final Map<String, int> _itemCounts = {};
 
+  num get total {
+    num totalCost = 0;
+    for (var item in _items) {
+      String itemId = item['id'];
+      totalCost += item['description'] * (_itemCounts[itemId] ?? 0);
+    }
+    return totalCost;
+  }
+
   List<Map<String, dynamic>> get items => _items;
 
   void addItem(Map<String, dynamic> item) {
     String itemId = item['id'];
-    if (_itemCounts.containsKey(itemId)) {
-      _itemCounts[itemId] = _itemCounts[itemId]! + 1;
+    String selectedSize=item['sizes'];
+    if (_itemCounts.containsKey(itemId) ) {
+
+        _itemCounts[itemId] = _itemCounts[itemId]! + 1;
+
     } else {
       _items.add(item);
       _itemCounts[itemId] = 1;
@@ -32,3 +44,4 @@ class CartProvider with ChangeNotifier {
     return _itemCounts[itemId] ?? 0;
   }
 }
+

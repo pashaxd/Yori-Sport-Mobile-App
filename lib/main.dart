@@ -17,7 +17,6 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-
   runApp( ChangeNotifierProvider(
     create: (context) => CartProvider(),
     child: MyApp(),

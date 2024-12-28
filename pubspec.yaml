@@ -17,6 +17,7 @@ dependencies:
   firebase_ui_auth: ^1.16.0
   cloud_firestore: ^5.5.1
   provider: ^6.1.2
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_test:
@@ -24,9 +25,12 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 flutter:
+  assets:
+    - assets/pictures/logo.png
+    - assets/svgs/newCart.svg
+    - assets/svgs/cart.svg
   uses-material-design: true
   fonts:
-
     - family: Yori
       fonts:
-        - asset: /Users/a1/StudioProjects/yori_sport_app/lib/assets/fonts/Anton-Regular.ttf
+        - asset: assets/fonts/Anton-Regular.ttf

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:yori_sport_app/abstractions/shopping_cart_card.dart';
 import 'package:yori_sport_app/features/profile_screen/profile_screen.dart';
 import 'package:yori_sport_app/features/shop_screen.dart';
 import 'package:yori_sport_app/features/shopping_cart_screen.dart';
-
-import '../assets/test_styles.dart';
+import '../abstractions/cart_provider.dart';
+import '../test_styles.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -14,10 +17,7 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
-  static const List<Widget> _widgetOptions = <Widget>[
-    ShopScreen(),
-    ProfileScreen()
-  ];
+  static List<Widget> _widgetOptions = <Widget>[ShopScreen(), ProfileScreen()];
 
   int _selectedIndex = 0;
 
@@ -29,32 +29,33 @@ class _BaseScreenState extends State<BaseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ShoppingCartScreen(
-                              initialItems: [],
-                            )));
-              },
-              icon: Icon(Icons.shopping_cart_outlined,
-              size: 26,),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ShoppingCartScreen(initialItems: []),
+                ),
+              );
+            },
+            icon: SvgPicture.asset(
+              cartProvider.items.isEmpty
+                  ? 'assets/svgs/cart.svg'
+                  : 'assets/svgs/newCart.svg',
+              semanticsLabel: 'Shopping Cart',
+              width: 30,
+            ),
           ),
         ],
         backgroundColor: Colors.grey,
-        title: Image.asset(
-          '/Users/a1/StudioProjects/yori_sport_app/lib/assets/pictures/logo.png',
-          height: 42,
-        ),
+        title: Image.asset('assets/pictures/logo.png', height: 42),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: Center(child: _widgetOptions[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         unselectedLabelStyle: TextStyles.defaultBottomStyle,
         showSelectedLabels: false,
@@ -65,11 +66,8 @@ class _BaseScreenState extends State<BaseScreen> {
         iconSize: 30,
         elevation: 5.0,
         backgroundColor: Colors.white,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopify),
-            label: 'SHOP',
-          ),
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.shopify), label: 'SHOP'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'ME'),
         ],
         selectedItemColor: Colors.black,

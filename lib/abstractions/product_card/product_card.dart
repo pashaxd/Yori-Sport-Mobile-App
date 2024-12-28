@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:yori_sport_app/abstractions/product_card/product_info.dart';
-import 'package:yori_sport_app/assets/test_styles.dart';
+
+
+import '../../test_styles.dart';
 
 class ProductCard extends StatelessWidget {
   final List<String> imgPaths;
   final String name;
-  final String description;
+  final int description;
   final String productId;
 
   ProductCard(this.imgPaths, this.name, this.description, this.productId);
@@ -17,11 +19,8 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ProductInfo(
-                  productId,
-                  imgPaths,
-                  name,
-                  description)),
+              builder: (context) =>
+                  ProductInfo(productId, imgPaths, name, description)),
         );
       },
       child: Container(
@@ -31,10 +30,11 @@ class ProductCard extends StatelessWidget {
           color: Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.network(
                 imgPaths.isNotEmpty ? imgPaths[0] : '',
-                height: 240,
+                height: 230,
                 width: 190,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
@@ -42,16 +42,16 @@ class ProductCard extends StatelessWidget {
                 },
               ),
               Padding(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
                 child: Text(
                   name,
                   style: TextStyles.defaultStyle,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
                 child: Text(
-                  description,
+                  '$description\$',
                   style: TextStyles.defaultStyle,
                 ),
               ),

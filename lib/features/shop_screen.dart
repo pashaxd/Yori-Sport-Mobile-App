@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yori_sport_app/abstractions/product_card/product_card.dart';
-import 'package:yori_sport_app/assets/test_styles.dart';
+import 'package:yori_sport_app/test_styles.dart';
 import 'package:yori_sport_app/features/menu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -87,27 +87,27 @@ class _ShopScreenState extends State<ShopScreen> {
       final product1 = products[i];
       List<String> images1 = List<String>.from(product1['image'] as List<dynamic>);
       String name1 = product1['name'];
-      String description1 = product1['description'];
+      int description1 = product1['description'];
       String id1 = product1['id'];
       if (i + 1 < products.length) {
         final product2 = products[i + 1];
         List<String> images2 = List<String>.from(product2['image'] as List<dynamic>);
         String name2 = product2['name'];
-        String description2 = product2['description'];
+        int description2 = product2['description'];
         String id2 = product2['id'];
 
         rows.add(buildProductRow(images1, name1, description1, id1, images2, name2, description2, id2));
       } else {
 
-        rows.add(buildProductRow(images1, name1, description1, id1, [], '', '', ''));
+        rows.add(buildProductRow(images1, name1, description1, id1, [], '', 0, ''));
       }
     }
 
     return rows;
   }
 
-   Widget buildProductRow(List<String> images1, String name1, String description1, String id1,
-      List<String> images2, String name2, String description2, String id2) {
+   Widget buildProductRow(List<String> images1, String name1, int description1, String id1,
+      List<String> images2, String name2, int  description2, String id2) {
     return Row(
       children: [
         SizedBox(width: 7),

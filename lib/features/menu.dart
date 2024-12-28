@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yori_sport_app/assets/test_styles.dart';
+import 'package:yori_sport_app/test_styles.dart';
 
 class MenuStatus extends StatefulWidget {
   final Function(double) scrollTo;

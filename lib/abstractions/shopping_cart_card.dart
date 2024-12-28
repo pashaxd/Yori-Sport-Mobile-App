@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:yori_sport_app/assets/test_styles.dart';
+import 'package:yori_sport_app/test_styles.dart';
 
 class ShoppingCartCard extends StatelessWidget {
   final String cartCardImage;
   final String name;
-  final String description;
+  final int description;
   final int counter;
+  final String size;
   final Function(BuildContext) adding;
   final Function(BuildContext) removing;
 
@@ -15,7 +16,7 @@ class ShoppingCartCard extends StatelessWidget {
     required this.description,
     required this.adding,
     required this.removing,
-    required this.counter,
+    required this.counter, required this.size,
   });
 
   @override
@@ -52,14 +53,20 @@ class ShoppingCartCard extends StatelessWidget {
               ],
             ),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 20),
-                  Text(name, style: TextStyles.defaultStyle),
-                  SizedBox(height: 5),
-                  Text(description, style: TextStyles.defaultStyle),
-                ],
+              child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    SizedBox(height: 20),
+                    Text(name, style: TextStyles.defaultStyle),
+                    SizedBox(height: 5),
+                    Text('$description \$', style: TextStyles.defaultStyle),
+                    SizedBox(height: 5),
+                    Text(size, style: TextStyles.defaultStyle),
+                
+                  ],
+                ),
               ),
             ),
           ],
