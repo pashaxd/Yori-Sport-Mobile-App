@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,6 +20,27 @@ class ShoppingCartScreen extends StatefulWidget {
 }
 
 class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
+  final TextEditingController addressController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userData = await FirebaseFirestore.instance.collection(
+          'users').doc(user.uid).get();
+      if (userData.exists) {
+        setState(() {
+          addressController.text = userData['address'] ?? '';
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
@@ -72,6 +94,10 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 ),
               ),
               onPressed: () async {
+                cartProvider.items.isEmpty
+                    ? ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Your cart is empty')),
+                ) :
                 await _placeOrder(cartProvider);
               },
               child: Text(
@@ -86,26 +112,30 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   }
 
   Future<void> _placeOrder(CartProvider cartProvider) async {
-    try {
+    if (addressController.text.isNotEmpty) {
+      try {
+        await FirebaseFirestore.instance.collection('orders').add({
+          'items': cartProvider.items,
+          'total': cartProvider.total,
+          'timestamp': FieldValue.serverTimestamp(),
 
-      await FirebaseFirestore.instance.collection('orders').add({
-        'items': cartProvider.items,
-        'total': cartProvider.total,
-        'timestamp': FieldValue.serverTimestamp(),
+        });
 
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Order placed successfully!')),
-      );
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Order placed successfully!')),
+        );
 
 
-      cartProvider.notifyListeners();
-    } catch (e) {
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to place order: $e')),
-      );
+        cartProvider.notifyListeners();
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to place order: $e')),
+        );
+      }
     }
+else{
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Write your adress in settings')));}
   }
+
 }
