@@ -26,16 +26,21 @@ class _MenuStatusState extends State<MenuStatus> {
       children: [
         IconButton(
           onPressed: toggleMenu,
-          icon: Icon(isOpen ? Icons.menu_open : Icons.menu_outlined,size: 30,),
+          icon: Icon(
+            isOpen ? Icons.menu_open : Icons.menu_outlined,
+            size: 30,
+          ),
         ),
         if (isOpen)
           Container(
+
             decoration: BoxDecoration(
               color: Colors.grey,
               borderRadius: BorderRadius.circular(8),
             ),
-            padding: EdgeInsets.all(8),
+            padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.005),
             child: Row(
+
               children: [
                 TextButton(
                   onPressed: () => widget.scrollTo(0),
@@ -58,13 +63,7 @@ class _MenuStatusState extends State<MenuStatus> {
                     style: TextStyles.defaultStyle,
                   ),
                 ),
-                TextButton(
-                  onPressed: () => widget.scrollTo(1960),
-                  child: Text(
-                    'MAINLINE',
-                    style: TextStyles.defaultStyle,
-                  ),
-                ),
+
               ],
             ),
           ),
