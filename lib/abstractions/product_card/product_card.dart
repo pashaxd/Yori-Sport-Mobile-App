@@ -24,8 +24,8 @@ class ProductCard extends StatelessWidget {
         );
       },
       child: Container(
-        height: 367,
-        width: 200,
+        height: MediaQuery.of(context).size.height*0.42,
+        width: MediaQuery.of(context).size.height*0.22,
         child: Card(
           color: Colors.white,
           child: Column(
@@ -34,22 +34,22 @@ class ProductCard extends StatelessWidget {
             children: [
               Image.network(
                 imgPaths.isNotEmpty ? imgPaths[0] : '',
-                height: 230,
-                width: 190,
+                height: MediaQuery.of(context).size.height*0.26,
+                width: MediaQuery.of(context).size.height*0.22,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
                   return Center(child: Text('Ошибка загрузки изображения'));
                 },
               ),
               Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.01),
                 child: Text(
                   name,
                   style: TextStyles.defaultStyle,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.01),
                 child: Text(
                   '$description\$',
                   style: TextStyles.defaultStyle,

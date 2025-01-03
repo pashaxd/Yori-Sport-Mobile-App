@@ -85,7 +85,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 imgPaths.isNotEmpty
                     ? CarouselSlider(
                         options: CarouselOptions(
-                          height: 400.0,
+                          height: MediaQuery.of(context).size.height*0.45,
                           autoPlay: true,
                           autoPlayAnimationDuration:
                               Duration(milliseconds: 1500),
@@ -121,6 +121,7 @@ class _ProductInfoState extends State<ProductInfo> {
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: Container(
+                        width: MediaQuery.of(context).size.height*0.33,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -129,12 +130,12 @@ class _ProductInfoState extends State<ProductInfo> {
                               style: TextStyles.defaultHeadStyle
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: MediaQuery.of(context).size.height*0.005),
                             Text(
                               '$description\$',
                               style: TextStyles.defaultHeadStyle,
                             ),
-                            SizedBox(height: 10),
+                            SizedBox( height: MediaQuery.of(context).size.height*0.005),
                             DefButton(
                                 'ADD TO CART',
                                 Icons.add_shopping_cart_outlined,

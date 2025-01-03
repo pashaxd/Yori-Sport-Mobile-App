@@ -21,12 +21,13 @@ class BoxSize extends StatelessWidget {
             height: 48,
             width: 60,
             decoration: BoxDecoration(
+
               color: isSelected ? Colors.black : Colors.white,
               border: Border.all(
                 color: isSelected ? Colors.black : Colors.grey,
               ),
               borderRadius:
-                  BorderRadius.circular(4.0), // Optional: Rounded corners
+                  BorderRadius.circular(8), // Optional: Rounded corners
             ),
             child: Center(
               child: Text(

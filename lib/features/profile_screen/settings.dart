@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yori_sport_app/abstractions/buttons.dart';
+import 'package:yori_sport_app/test_styles.dart';
 
 class Settings1 extends StatefulWidget {
   Settings1();
@@ -61,14 +62,23 @@ class _SettingsState extends State<Settings1> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(labelText: 'Name'),
+            Padding(
+             
+              padding: EdgeInsets.all(5),
+              child: TextField(
+                style: TextStyles.defaultStyle,
+                controller: _nameController,
+                decoration: InputDecoration(labelText: 'Name',labelStyle:TextStyles.defaultStyle),
+              ),
             ),
             SizedBox(height: 16.0),
-            TextField(
-              controller: _addressController,
-              decoration: InputDecoration(labelText: 'Address'),
+            Padding(
+              padding: EdgeInsets.all(5),
+              child: TextField(
+                style: TextStyles.defaultStyle,
+                controller: _addressController,
+                decoration: InputDecoration(labelText: 'Address',labelStyle:TextStyles.defaultStyle ),
+              ),
             ),
             SizedBox(height: 16.0),
             DefButton(

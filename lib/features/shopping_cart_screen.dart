@@ -31,8 +31,10 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
   Future<void> _loadUserData() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      DocumentSnapshot userData = await FirebaseFirestore.instance.collection(
-          'users').doc(user.uid).get();
+      DocumentSnapshot userData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uid)
+          .get();
       if (userData.exists) {
         setState(() {
           addressController.text = userData['address'] ?? '';
@@ -55,16 +57,17 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(
-            child: cartProvider.items.isEmpty
-                ? Center(
-              child: Text(
-                'YOUR SHOPPING CART IS EMPTY',
-                style: TextStyles.defaultStyle,
-              ),
-            )
-                : ListView.builder(
+          cartProvider.items.isEmpty
+              ? Center(
+            child: Text(
+              'YOUR SHOPPING CART IS EMPTY',
+              style: TextStyles.defaultStyle,
+            ),
+          )
+              : Expanded(
+            child: ListView.builder(
               itemCount: cartProvider.items.length,
               itemBuilder: (context, index) {
                 var item = cartProvider.items[index];
@@ -85,7 +88,7 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             ),
           ),
           Container(
-            width: 300,
+            width: MediaQuery.of(context).size.width * 0.8,
             padding: EdgeInsets.only(bottom: 50),
             child: ElevatedButton(
               style: ButtonStyle(
@@ -97,8 +100,8 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 cartProvider.items.isEmpty
                     ? ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Your cart is empty')),
-                ) :
-                await _placeOrder(cartProvider);
+                )
+                    : await _placeOrder(cartProvider);
               },
               child: Text(
                 'Total: \$${cartProvider.total.toStringAsFixed(2)}',
@@ -118,13 +121,11 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
           'items': cartProvider.items,
           'total': cartProvider.total,
           'timestamp': FieldValue.serverTimestamp(),
-
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Order placed successfully!')),
         );
-
 
         cartProvider.notifyListeners();
       } catch (e) {
@@ -132,10 +133,9 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
           SnackBar(content: Text('Failed to place order: $e')),
         );
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Write your address in settings')));
     }
-else{
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Write your adress in settings')));}
   }
-
 }

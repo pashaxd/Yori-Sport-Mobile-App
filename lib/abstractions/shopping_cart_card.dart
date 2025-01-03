@@ -16,15 +16,16 @@ class ShoppingCartCard extends StatelessWidget {
     required this.description,
     required this.adding,
     required this.removing,
-    required this.counter, required this.size,
+    required this.counter,
+    required this.size,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(15),
-      width: 500,
-      height: 200,
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: MediaQuery.of(context).size.height * 0.2,
       child: Card(
         color: Colors.white,
         child: Row(
@@ -32,8 +33,8 @@ class ShoppingCartCard extends StatelessWidget {
           children: [
             Image.network(
               cartCardImage,
-              width: 120,
-              height: 170,
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.25,
               errorBuilder: (context, error, stackTrace) {
                 return Center(child: Text('Ошибка загрузки изображения'));
               },
@@ -54,17 +55,15 @@ class ShoppingCartCard extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(height: 20),
                     Text(name, style: TextStyles.defaultStyle),
                     SizedBox(height: 5),
                     Text('$description \$', style: TextStyles.defaultStyle),
                     SizedBox(height: 5),
                     Text(size, style: TextStyles.defaultStyle),
-                
                   ],
                 ),
               ),

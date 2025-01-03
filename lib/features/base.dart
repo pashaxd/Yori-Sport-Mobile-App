@@ -48,7 +48,7 @@ class _BaseScreenState extends State<BaseScreen> {
                   ? 'assets/svgs/cart.svg'
                   : 'assets/svgs/newCart.svg',
               semanticsLabel: 'Shopping Cart',
-              width: 30,
+              width: 25,
             ),
           ),
         ],
@@ -63,10 +63,10 @@ class _BaseScreenState extends State<BaseScreen> {
         onTap: _onItemTapped,
         unselectedItemColor: Colors.grey,
         currentIndex: _selectedIndex,
-        iconSize: 30,
+        iconSize: 25,
         elevation: 5.0,
         backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.shopify), label: 'SHOP'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'ME'),
         ],

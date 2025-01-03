@@ -3,10 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yori_sport_app/abstractions/buttons.dart';
 import 'package:yori_sport_app/test_styles.dart';
-import 'package:yori_sport_app/features/profile_screen/liked.dart';
-import 'package:yori_sport_app/features/profile_screen/purchases.dart';
 import 'package:yori_sport_app/features/profile_screen/settings.dart';
-import 'package:yori_sport_app/features/shop_screen.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
