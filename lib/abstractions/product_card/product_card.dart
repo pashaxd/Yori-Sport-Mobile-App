@@ -50,6 +50,7 @@ class ProductCard extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.all(MediaQuery.of(context).size.height*0.01),
+
                 child: Text(
                   '$description\$',
                   style: TextStyles.defaultStyle,

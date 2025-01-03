@@ -56,21 +56,23 @@ class _BaseScreenState extends State<BaseScreen> {
         title: Image.asset('assets/pictures/logo.png', height: 42),
       ),
       body: Center(child: _widgetOptions[_selectedIndex]),
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedLabelStyle: TextStyles.defaultBottomStyle,
-        showSelectedLabels: false,
-        selectedIconTheme: IconThemeData(size: 35),
-        onTap: _onItemTapped,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        iconSize: 25,
-        elevation: 5.0,
-        backgroundColor: Colors.white,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.shopify), label: 'SHOP'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'ME'),
-        ],
-        selectedItemColor: Colors.black,
+      bottomNavigationBar: Container(
+        height: 93,
+        child: BottomNavigationBar(
+          unselectedLabelStyle: TextStyles.defaultBottomStyle,
+          showSelectedLabels: false,
+          selectedIconTheme: IconThemeData(size: 25),
+          onTap: _onItemTapped,
+          unselectedItemColor: Colors.grey,
+          currentIndex: _selectedIndex,
+          iconSize: 20,
+          backgroundColor: Colors.white,
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.shopify), label: 'SHOP'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'ME'),
+          ],
+          selectedItemColor: Colors.black,
+        ),
       ),
     );
   }

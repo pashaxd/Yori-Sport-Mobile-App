@@ -61,35 +61,38 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
         children: [
           cartProvider.items.isEmpty
               ? Center(
-            child: Text(
-              'YOUR SHOPPING CART IS EMPTY',
-              style: TextStyles.defaultStyle,
-            ),
-          )
+                  child: Padding(
+                    padding:  EdgeInsets.only(top:MediaQuery.of(context).size.height * 0.4),
+                    child: Text(
+                      'YOUR SHOPPING CART IS EMPTY',
+                      style: TextStyles.defaultStyle,
+                    ),
+                  ),
+                )
               : Expanded(
-            child: ListView.builder(
-              itemCount: cartProvider.items.length,
-              itemBuilder: (context, index) {
-                var item = cartProvider.items[index];
-                return ShoppingCartCard(
-                  cartCardImage: item['image'],
-                  name: item['name'],
-                  description: item['description'],
-                  size: item["sizes"],
-                  adding: (context) {
-                    cartProvider.addItem(item);
-                  },
-                  removing: (context) {
-                    cartProvider.removeItem(item['id']);
-                  },
-                  counter: cartProvider.getItemCount(item['id']),
-                );
-              },
-            ),
-          ),
+                  child: ListView.builder(
+                    itemCount: cartProvider.items.length,
+                    itemBuilder: (context, index) {
+                      var item = cartProvider.items[index];
+                      return ShoppingCartCard(
+                        cartCardImage: item['image'],
+                        name: item['name'],
+                        description: item['description'],
+                        size: item["sizes"],
+                        adding: (context) {
+                          cartProvider.addItem(item);
+                        },
+                        removing: (context) {
+                          cartProvider.removeItem(item['id']);
+                        },
+                        counter: cartProvider.getItemCount(item['id']),
+                      );
+                    },
+                  ),
+                ),
           Container(
+          padding: EdgeInsets.only(bottom:MediaQuery.of(context).size.height * 0.05),
             width: MediaQuery.of(context).size.width * 0.8,
-            padding: EdgeInsets.only(bottom: 50),
             child: ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
@@ -99,8 +102,8 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
               onPressed: () async {
                 cartProvider.items.isEmpty
                     ? ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Your cart is empty')),
-                )
+                        SnackBar(content: Text('Your cart is empty')),
+                      )
                     : await _placeOrder(cartProvider);
               },
               child: Text(
@@ -108,7 +111,8 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
                 style: TextStyles.defaultStyle,
               ),
             ),
-          ),
+
+          ) ,
         ],
       ),
     );

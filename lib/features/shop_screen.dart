@@ -30,6 +30,15 @@ class _ShopScreenState extends State<ShopScreen> {
   }
 
   void fetchProducts() async {
+
+    if (ProductCache().products.isNotEmpty) {
+      setState(() {
+        products = ProductCache().products;
+      });
+      return;
+    }
+
+
     try {
       CollectionReference things = FirebaseFirestore.instance.collection('things');
       QuerySnapshot snapshot = await things.get();
@@ -39,12 +48,17 @@ class _ShopScreenState extends State<ShopScreen> {
         return;
       }
 
+      List<Map<String, dynamic>> fetchedProducts = snapshot.docs.map((doc) {
+        var data = doc.data() as Map<String, dynamic>;
+        data['id'] = doc.id;
+        return data;
+      }).toList();
+
+
+      ProductCache().products = fetchedProducts;
+
       setState(() {
-        products = snapshot.docs.map((doc) {
-          var data = doc.data() as Map<String, dynamic>;
-          data['id'] = doc.id;
-          return data;
-        }).toList();
+        products = fetchedProducts;
       });
     } catch (e) {
       print('Ошибка при получении данных: $e');
@@ -131,4 +145,12 @@ class _ShopScreenState extends State<ShopScreen> {
       ],
     );
   }
+}
+class ProductCache {
+  static final ProductCache _instance = ProductCache._internal();
+  factory ProductCache() => _instance;
+
+  List<Map<String, dynamic>> products = [];
+
+  ProductCache._internal();
 }
